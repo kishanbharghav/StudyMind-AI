@@ -7,6 +7,12 @@ StudyMind AI is an application featuring a FastAPI backend and a React (Vite) fr
 - **Python**: (3.9+) for running the backend.
 - An API Key from Navigate Labs AI.
 
+<img width="1917" height="906" alt="Screenshot 2026-03-29 215350" src="https://github.com/user-attachments/assets/b00dd289-672c-47a3-b751-7efa2720cb76" />
+<img width="1919" height="954" alt="Screenshot 2026-03-29 220724" src="https://github.com/user-attachments/assets/fa73c11c-d4a3-4c61-8b6c-337c08984ce5" />
+<img width="1916" height="927" alt="Screenshot 2026-03-29 220704" src="https://github.com/user-attachments/assets/3996e219-050d-490f-908d-14a0fe9e2335" />
+<img width="1913" height="910" alt="Screenshot 2026-03-29 220642" src="https://github.com/user-attachments/assets/ead33adc-1f3c-44eb-9907-1afb22f43199" />
+<img width="1895" height="916" alt="Screenshot 2026-03-29 220043" src="https://github.com/user-attachments/assets/144a7099-954b-4d61-9bae-c5338b6e4143" />
+
 ## Setup Instructions
 
 ### 1. Clone the Repository
@@ -75,10 +81,5 @@ You will need to set up the environment variables to provide your API keys.
 ## How to Stop the Application
 - To stop either the frontend or the backend, simply go to its respective terminal and press `Ctrl + C`.
 
-<img width="1917" height="906" alt="Screenshot 2026-03-29 215350" src="https://github.com/user-attachments/assets/b00dd289-672c-47a3-b751-7efa2720cb76" />
-<img width="1919" height="954" alt="Screenshot 2026-03-29 220724" src="https://github.com/user-attachments/assets/fa73c11c-d4a3-4c61-8b6c-337c08984ce5" />
-<img width="1916" height="927" alt="Screenshot 2026-03-29 220704" src="https://github.com/user-attachments/assets/3996e219-050d-490f-908d-14a0fe9e2335" />
-<img width="1913" height="910" alt="Screenshot 2026-03-29 220642" src="https://github.com/user-attachments/assets/ead33adc-1f3c-44eb-9907-1afb22f43199" />
-<img width="1895" height="916" alt="Screenshot 2026-03-29 220043" src="https://github.com/user-attachments/assets/144a7099-954b-4d61-9bae-c5338b6e4143" />
 
 
