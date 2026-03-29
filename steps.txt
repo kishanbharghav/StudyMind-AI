@@ -1,0 +1,31 @@
+Here are the commands you can use to start and stop both the frontend and backend servers:
+
+### **Backend (FastAPI)**
+**To start:**
+Open your terminal, navigate to the `backend` folder, and run:
+```powershell
+cd "c:\Users\kisha\Documents\projects\Studymind ai\backend"
+.\venv\Scripts\uvicorn.exe main:app --reload
+```
+**To stop:**
+Simply press `Ctrl + C` in the terminal where the backend is running.
+
+---
+
+### **Frontend (Vite + React)**
+**To start:**
+Open a separate terminal window, navigate to the `frontend` folder, and run:
+```powershell
+cd "c:\Users\kisha\Documents\projects\Studymind ai\frontend"
+npm run dev
+```
+**To stop:**
+Simply press `Ctrl + C` in the terminal where the frontend is running, then type `Y` and hit Enter if it asks "Terminate batch job?".
+
+*(Note: Both of these are currently running in the background terminals I started for you, but if you restart your computer or close the editor, you can start them back up using these commands!)*
+
+Ran command: `cd "c:\Users\kisha\Documents\projects\Studymind ai\backend"`
+Ran command: `.\venv\Scripts\uvicorn.exe main:app --reload`
+Ran command: `cd "c:\Users\kisha\Documents\projects\Studymind ai\frontend"
+npm run dev
+`
