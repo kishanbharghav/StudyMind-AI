@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import client from '../api/client';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -11,10 +11,36 @@ const ExaminerPage = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [feedback, setFeedback] = useState(null);
   const [transcription, setTranscription] = useState(null);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const audioElementRef = useRef(new Audio());
+
+  useEffect(() => {
+    const audio = audioElementRef.current;
+    if (!audio) return;
+    
+    const handlePlay = () => setIsPlayingAudio(true);
+    const handlePause = () => setIsPlayingAudio(false);
+    const handleEnded = () => setIsPlayingAudio(false);
+    
+    audio.addEventListener('play', handlePlay);
+    audio.addEventListener('pause', handlePause);
+    audio.addEventListener('ended', handleEnded);
+    
+    return () => {
+      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('ended', handleEnded);
+    };
+  }, []);
+
+  const stopAudio = () => {
+    if (audioElementRef.current) {
+      audioElementRef.current.pause();
+    }
+  };
 
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -67,6 +93,7 @@ const ExaminerPage = () => {
   };
 
   const startRecording = async () => {
+    stopAudio();
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const mediaRecorder = new MediaRecorder(stream);
@@ -160,6 +187,12 @@ const ExaminerPage = () => {
               <div className="mb-4">
                 <span className="inline-block px-3 py-1 bg-brand-100 text-brand-700 rounded-full text-xs font-bold uppercase tracking-wide mb-4">Question</span>
                 <p className="text-2xl text-gray-800 font-medium leading-relaxed">{question}</p>
+                {isPlayingAudio && (
+                  <button onClick={stopAudio} className="mt-6 inline-flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium hover:bg-red-100 transition-colors shadow-sm">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clipRule="evenodd" /></svg>
+                    Stop Speaking
+                  </button>
+                )}
               </div>
 
               <div className="mt-8">
@@ -201,6 +234,14 @@ const ExaminerPage = () => {
                 <p className="text-sm font-semibold text-green-600 mb-1">AI Feedback</p>
                 <p className="text-green-900 leading-relaxed">{feedback}</p>
               </div>
+              {isPlayingAudio && (
+                <div className="flex justify-center -mt-2 mb-2">
+                  <button onClick={stopAudio} className="inline-flex items-center px-4 py-2 bg-red-50 text-red-600 rounded-full text-sm font-medium hover:bg-red-100 transition-colors shadow-sm">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clipRule="evenodd" /></svg>
+                    Stop Speaking
+                  </button>
+                </div>
+              )}
               <div className="pt-4 flex justify-center">
                 <button onClick={handleStartExam} className="px-6 py-2 bg-brand-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all font-medium text-sm">
                   Next Question
